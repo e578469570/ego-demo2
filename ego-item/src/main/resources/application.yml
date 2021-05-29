@@ -1,0 +1,25 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: ItemService
+  datasource:
+    url: jdbc:mysql://192.168.249.10:3306/ego-test
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: qweQWE123!@#
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+  cloud:
+    nacos:
+      discovery:
+        server‐addr: 127.0.0.1:8848
+logging:
+  level:
+    root: info
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: /mappers/*.xml
+  type-aliases-package: com.ego.com.ego.pojo

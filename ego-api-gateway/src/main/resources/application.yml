@@ -1,0 +1,36 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: EgoApiGateway
+  cloud:
+    gateway:
+      routes:
+        - id: business_route
+          uri: lb://BusinessService  #必须和nacos中注册的名字一样
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1  #去除/api路径
+    nacos:
+      discovery:
+        server‐addr: 127.0.0.1:8848
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000 # 设置hystrix的超时时间为6000ms
+management:
+  endpoint:
+    gateway:
+      enabled: true
+    web:
+      exposure:
+        include: true
+logging:
+  level:
+    root: info
+    org:
+      springframework: error
